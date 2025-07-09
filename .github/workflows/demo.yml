@@ -26,12 +26,10 @@ jobs:
       - name: Build website
         run: npm run build
       - name: Upload Artifact
-        run: actions/upload-artifact@v4.6.2
+        run: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: dist
-          #  dist
-          #  package.json
+          path: [dist, package.json}
   deploy:
     needs: build
     runs-on: ubuntu-latest
