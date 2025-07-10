@@ -31,8 +31,8 @@ jobs:
         id: publish
         # accesses the js filename in the dist folder
         run: |
-        file = $(find dist/assets -name '*.js' -type f | head -n 1) 
-        echo "script-file=file" >> $GITHUB_OUTPUT
+          file = $(find dist/assets -name '*.js' -type f | head -n 1) 
+          echo "script-file=file" >> $GITHUB_OUTPUT
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.6.2
         with:
