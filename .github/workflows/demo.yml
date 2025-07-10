@@ -33,7 +33,7 @@ jobs:
           name: dist-files
           path: dist
       - name: Debug file listing
-          run: ls -R dist
+        run: ls -R dist
       - name: Publish JS filename
         id: publish
         # accesses the js filename in the dist folder
