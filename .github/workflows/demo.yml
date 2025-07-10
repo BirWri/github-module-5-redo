@@ -36,8 +36,8 @@ jobs:
     steps:
       - name: Get build artifacts
         uses: actions/download-artifact@v4.3.0
-          with: 
-            name: dist-files
+        with: 
+          name: dist-files
       - name: Print a list of files
         run: ls
       - name: Deploy
