@@ -37,15 +37,7 @@ jobs:
       - name: Publish JS filename
         id: publish
         # accesses the js filename in the dist folder
-        run: |
-          echo "Where is .js files in dist/assets"
-          jsfile=$(find dist/assets -name '*.js' -type f | head -n 1) 
-          echo "Found file: $jsfile"
-          if [ -n "$jsfile" ]; then
-            echo "script-file=$jsfile" >> $GITHUB_OUTPUT
-          else
-            echo "No JS file found"
-          fi   
+        run: find dist/assets/*.js -type f -execdir echo "script-file={}" >> $GITHUB_OUTPUT ';'
   deploy:
     needs: build
     runs-on: ubuntu-latest
