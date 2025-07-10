@@ -38,13 +38,9 @@ jobs:
         id: publish
         # accesses the js filename in the dist folder
         run: |
-          echo "Current directory:"
-          pwd
-          echo "Listing all files:"
-          ls -R
-          echo "Looking for .js files in dist/assets"
+          echo "Where is .js files in dist/assets"
           jsfile=$(find dist/assets -name '*.js' -type f | head -n 1) 
-          echo "Found file: $file"
+          echo "Found file: $jsfile"
           if [ -n "$jsfile" ]; then
             echo "script-file=$jsfile" >> $GITHUB_OUTPUT
           else
