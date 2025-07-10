@@ -32,12 +32,20 @@ jobs:
         with:
           name: dist-files
           path: dist
+      - name: Debug file listing
+          run: ls -R dist
       - name: Publish JS filename
         id: publish
         # accesses the js filename in the dist folder
         run: |
+          echo "Looking for .js files in dist/assets"
           file = $(find dist/assets -name '*.js' -type f | head -n 1) 
-          echo "script-file=file" >> $GITHUB_OUTPUT    
+          echo "Found file: $file"
+          if [ -n "$file" ]; then
+            echo "script-file=$file" >> $GITHUB_OUTPUT
+          else
+            echo "No JS file found"
+          fi   
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -50,6 +58,5 @@ jobs:
         run: ls
       - name: Output filename
         run: echo "${{ needs.build.outputs.script-file }}"
-
       - name: Deploy
         run: echo "Deploying..."
